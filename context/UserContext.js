@@ -1,5 +1,6 @@
 import contextFactory from './contextFactory';
 import apiHelper from '../utils/apiHelper';
+import { navigateReplace } from '../utils/navigationRef';
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -78,10 +79,10 @@ const userReducer = (state, action) => {
 
 const getMe = dispatch => async () => {
   try {
-    const { data } = await apiHelper.get(`/api/v1/users/me`);
+    const { data } = await apiHelper.get(`/account/me`);
     console.log('Get me!');
 
-    dispatch({ type: 'GET_ME', payload: data.data.data });
+    dispatch({ type: 'GET_ME', payload: data.acc });
   } catch (error) {
     const payload = error.response
       ? error.response.data.message
@@ -96,14 +97,15 @@ const updateMe = dispatch => async ({ name, phone, address }) => {
     if (!name || !phone || !address) {
       throw new Error('Please tell us your infomation');
     }
-    const { data } = await apiHelper.patch(`/api/v1/users/updateMe`, {
+    const { data } = await apiHelper.post(`/account/update`, {
       name,
       phone,
       address,
     });
-    console.log(data.data.user);
+    console.log(data);
+    navigateReplace('Profile')
 
-    dispatch({ type: 'UPDATE_ME', payload: data.data.user });
+    dispatch({ type: 'UPDATE_ME', payload: data.account });
   } catch (error) {
     const payload = error.response
       ? error.response.data.message

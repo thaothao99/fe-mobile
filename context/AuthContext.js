@@ -65,7 +65,7 @@ const singInGG = dispatch => {
           await AsyncStorage.setItem('token', tokenRes);
           dispatch({ type: 'LOGIN_SUCCESS', payload: '' });
           // navigate("Main");
-          navigateReplace('Main');
+          navigateReplace('');
         }
       })
 
@@ -113,7 +113,7 @@ const signUp = dispatch => async ({
     if (!username || !email || !password) {
       throw new Error('Please enter name, email and password!');
     }
-    if (password !== passwordConfirm) dispatch({ type: 'SET_AUTH_ERROR', payload: 'The password confirmation does not match!' });
+    if (password !== passwordConfirm) throw new Error('The password confirmation does not match!');
     const { data } = await apiHelper.post('account/create', {
       username,
       email,
@@ -209,11 +209,16 @@ const updatePassword = dispatch => async ({
     if (!passwordCurrent || !password || !passwordConfirm) {
       throw new Error('Please enter password and and new password!');
     }
+    if (passwordConfirm !== password) {
+      throw new Error('The password confirmation does not match!')
+    }
+    if (passwordCurrent == password) {
+      throw new Error("New password cannot be the same as the old password!")
+    }
 
-    await apiHelper.patch(`/api/v1/users/updateMyPassword`, {
+    await apiHelper.post(`/account/updatePass`, {
       passwordCurrent,
       password,
-      passwordConfirm,
     });
     await AsyncStorage.removeItem('token');
     dispatch({ type: 'UPDATE_PASSWORD' });

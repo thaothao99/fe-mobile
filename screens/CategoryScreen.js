@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -21,12 +21,13 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import CategoryItemComponent from '../components/CategoryItemComponent';
 import { navigate } from '../utils/navigationRef';
+import apiHelper from '../utils/apiHelper';
 
-const data = {
-  name: 'Running',
-  img:
-    'https://image-us.eva.vn/upload/4-2019/images/2019-10-15/vo-tu-thu-son-tai-han-quoc-ngoc-trinh-bi-dan-tinh-nem-da-khong-thuong-tiec-fni1552807902-1571123246-312-width600height900.jpg',
-};
+// const data = {
+//   name: 'Running',
+//   img:
+//     'https://image-us.eva.vn/upload/4-2019/images/2019-10-15/vo-tu-thu-son-tai-han-quoc-ngoc-trinh-bi-dan-tinh-nem-da-khong-thuong-tiec-fni1552807902-1571123246-312-width600height900.jpg',
+// };
 
 const styles = StyleSheet.create({
   Item2: {
@@ -50,6 +51,21 @@ const styles = StyleSheet.create({
 });
 
 const CategoryScreen = props => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [types, setTypes] = useState([]);
+  const fetchData = async () => {
+    const { data } = await apiHelper.get('/type-product/all');
+    setTypes(data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchData();
+    console.log(types)
+  }, []);
+
+
   return (
     <View
       style={{
@@ -113,7 +129,28 @@ const CategoryScreen = props => {
         </View>
         {/* =============TYPE=============== */}
         <Text style={styles.TitleType}>Type</Text>
-        <View style={styles.Item2}>
+        <View style={{
+          justifyContent: 'center',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          flex: 1,
+        }}>
+          {
+            !isLoading && types.map(type => {
+              return <View
+                key={type._id}
+              >
+                <CategoryItemComponent
+                  key={type.name}
+                  title={type.name}
+                  img={type.urlImg}
+                  handleOnpress={searchItems(type.name, 'categories', 'in')}
+                />
+              </View>
+            })
+          }
+        </View>
+        {/* <View style={styles.Item2}>
           <CategoryItemComponent
             title="LifeStyle"
             img="https://cdn.pixabay.com/photo/2016/10/21/14/48/light-painting-1758192_1280.jpg"
@@ -148,10 +185,10 @@ const CategoryScreen = props => {
             img="https://c.static-nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/salis6eyc5s6wjme1dh4/custom-nike-metcon-5-by-you.jpg"
             handleOnpress={searchItems('', 'categories', 'in')}
           />
-        </View>
+        </View> */}
         {/*==================================== */}
       </ScrollView>
-    </View>
+    </View >
   );
 };
 

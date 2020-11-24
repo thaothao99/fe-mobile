@@ -21,8 +21,8 @@ import RatingChart from '../components/RatingChart';
 import HighestRatedComponent from '../components/HighestRatedComponent';
 
 const images = [
-  'https://thesimplifiers.com/wp-content/uploads/2019/07/nicolas-cuestas-n1fm9ojsEu8-unsplash-1024x685.jpg',
-  'https://megamobile.pk/wp-content/uploads/2019/09/photo-1549298916-f52d724204b4.jpg',
+  'https://trungsneaker.com/wp-content/uploads/2020/01/d2234c21fc3849e5a79efb6219e48b77.jpg',
+  'https://under.vn/wp-content/uploads/2020/03/nike-air-force-one-f1-0.jpg',
   'https://cdn.shopify.com/s/files/1/0247/0245/1796/products/air-jordan-design-footwear-1598505_1200x1200.jpg?v=1556428513',
   'http://netblogtips.com/wp-content/uploads/2019/07/photo-1552346154-21d32810aba3.jpg',
 ];

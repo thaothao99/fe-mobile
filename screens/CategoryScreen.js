@@ -53,16 +53,18 @@ const styles = StyleSheet.create({
 const CategoryScreen = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [types, setTypes] = useState([]);
+  const [brands, setBrands] = useState([])
   const fetchData = async () => {
-    const { data } = await apiHelper.get('/type-product/all');
-    setTypes(data);
+    const { data } = await apiHelper.get('/brand-product/type-brand');
+    const { types, brands } = data
+    setTypes(types);
+    setBrands(brands)
     setIsLoading(false);
   };
-
   useEffect(() => {
     setIsLoading(true);
     fetchData();
-    console.log(types)
+    // console.log(types)
   }, []);
 
 
@@ -103,7 +105,28 @@ const CategoryScreen = props => {
       {/* ===============BRAND============== */}
       <ScrollView style={{ padding: 10 }}>
         <Text style={styles.TitleType}>Brand</Text>
-        <View style={styles.Item2}>
+        <View style={{
+          justifyContent: 'center',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          flex: 1,
+        }}>
+          {
+            !isLoading && brands.map(brand => {
+              return <View
+                key={brand._id}
+              >
+                <CategoryItemComponent
+                  key={brand.name}
+                  title={brand.name}
+                  img={brand.urlImg}
+                  handleOnpress={searchItems(brand.name)}
+                />
+              </View>
+            })
+          }
+        </View>
+        {/* <View style={styles.Item2}>
           <CategoryItemComponent
             title="Nike"
             img="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_1280.jpg"
@@ -126,7 +149,7 @@ const CategoryScreen = props => {
             img="https://c.static-nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/u1pc2awdr0feaemheohp/zoom-pegasus-turbo-shield-running-shoe-7PchpQ.jpg"
             handleOnpress={searchItems(`Biti's`)}
           />
-        </View>
+        </View> */}
         {/* =============TYPE=============== */}
         <Text style={styles.TitleType}>Type</Text>
         <View style={{

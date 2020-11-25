@@ -106,15 +106,16 @@ const searchProducts = dispatch => async (
     if (type === 'in') {
       nameCapitalized = `[${nameCapitalized}]`;
     }
-    const query = `&${field}[${type}]=${nameCapitalized}`;
-    console.log(`/api/v1/products?${query}`);
+    // const query = `&${field}[${type}]=${nameCapitalized}`;
+    const query = `&${field}=${nameCapitalized}`;
+    console.log(`/product?${query}`);
 
-    const { data } = await apiHelper.get(`/api/v1/products?${query}`);
+    const { data } = await apiHelper.get(`/product?${query}`);
     console.log('Get products!');
 
     dispatch({
       type: 'GET_LIST_PRODUCTS',
-      payload: { products: data.data.data, query },
+      payload: { products: data, query },
     });
   } catch (error) {
     const payload = error.response
@@ -128,13 +129,13 @@ const searchProducts = dispatch => async (
 
 const getProduct = dispatch => async id => {
   try {
-    console.log(`/api/v1/products/${id}`);
+    console.log(`/product/${id}`);
 
-    const { data } = await apiHelper.get(`/api/v1/products/${id}`);
+    const { data } = await apiHelper.get(`/product/${id}`);
 
     dispatch({
       type: 'GET_PRODUCT',
-      payload: data.data.data,
+      payload: data,
     });
   } catch (error) {
     const payload = error.response

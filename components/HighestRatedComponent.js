@@ -10,10 +10,8 @@ const HighestRatedComponent = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const { data } = await apiHelper.get(
-      `/api/v1/products?sort=-ratingsAverage&limit=5`
-    );
-    setItems(data.data.data);
+    const { data } = await apiHelper.get('/product/rating-highest');
+    setItems(data);
     setIsLoading(false);
   };
 
@@ -49,7 +47,7 @@ const HighestRatedComponent = () => {
       <View style={{ marginLeft: 20, marginBottom: 20 }}>
         <FlatList
           data={items}
-          keyExtractor={data => data.id.toString()}
+          keyExtractor={data => data.id}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {

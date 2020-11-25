@@ -15,7 +15,7 @@ import ContentLoader from '@sarmad1995/react-native-content-loader';
 const BigListItemComponent = ({ item, isLoading }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigate('Product', { productId: item.id })}
+      onPress={() => navigate('Product', { productId: item._id })}
       style={{
         maxHeight: 230,
       }}

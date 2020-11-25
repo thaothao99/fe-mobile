@@ -12,7 +12,7 @@ import { navigate } from '../utils/navigationRef';
 const SmallListItemComponent = ({ item }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigate('Product', { productId: item.id })}
+      onPress={() => navigate('Product', { productId: item._id })}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View

@@ -9,8 +9,9 @@ const NewArriavalComponent = props => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const { data } = await apiHelper.get(`/api/v1/products?limit=5`);
-    setItems(data.data.data);
+    const { data } = await apiHelper.get(`/product/new-arrival`);
+    // console.log(data)
+    setItems(data);
     setIsLoading(false);
   };
 

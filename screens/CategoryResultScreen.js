@@ -41,7 +41,7 @@ const CategoryResultScreen = props => {
       setLoading();
       searchProducts(search, 'CategoryResult', field, type);
       console.log(products);
-      return () => {};
+      return () => { };
     }
   }, []);
   const [isClear, setIsCLear] = useState(true);
@@ -127,7 +127,7 @@ const CategoryResultScreen = props => {
         <View>
           <FlatList
             data={products}
-            keyExtractor={data => data.id.toString()}
+            keyExtractor={data => data._id}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <SearchResultItemComponent

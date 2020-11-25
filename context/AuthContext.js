@@ -65,7 +65,7 @@ const singInGG = dispatch => {
           await AsyncStorage.setItem('token', tokenRes);
           dispatch({ type: 'LOGIN_SUCCESS', payload: '' });
           // navigate("Main");
-          navigateReplace('');
+          navigateReplace('Main');
         }
       })
 

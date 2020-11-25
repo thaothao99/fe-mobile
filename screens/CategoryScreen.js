@@ -167,7 +167,7 @@ const CategoryScreen = props => {
                   key={type.name}
                   title={type.name}
                   img={type.urlImg}
-                  handleOnpress={searchItems(type.name, 'categories', 'in')}
+                  handleOnpress={searchItems(type.name.toString(), 'categories', '')}
                 />
               </View>
             })

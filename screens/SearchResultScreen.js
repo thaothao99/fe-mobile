@@ -9,8 +9,8 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   FlatList,
-  Picker,
 } from 'react-native';
+import { Picker } from "native-base";
 import { Context as ProductContext } from '../context/ProductContext';
 import InputComponent from '../components/InputComponent';
 import ButtonComponent from '../components/ButtonComponent';
@@ -29,7 +29,7 @@ const SearchResultScreen = props => {
     sortProducts,
     searchProducts,
   } = useContext(ProductContext);
-  const [sort, setSort] = useState('-createAt');
+  const [sort, setSort] = useState("none");
 
   useEffect(() => {
     if (sortQuery) {
@@ -66,21 +66,22 @@ const SearchResultScreen = props => {
           >
             <Text style={{ fontSize: 17 }}>Sort</Text>
             <Picker
+              mode="dropdown"
               selectedValue={sort}
               style={{ height: 30, width: 100 }}
               onValueChange={(itemValue, itemIndex) => {
                 setLoading();
                 setSort(itemValue);
                 console.log(itemValue);
-
                 const sortQuery = `&sort=${itemValue}`;
                 sortProducts(searchQuery, filterQuery, sortQuery);
               }}
             >
-              <Picker.Item label="Newest" value="-createdAt" />
-              <Picker.Item label="Highest Rating" value="-ratingsAverage" />
-              <Picker.Item label="Price: High-Low" value="-price" />
-              <Picker.Item label="Price: Low-High" value="price" />
+              <Picker.Item label="Newest" value="newest" />
+              <Picker.Item label="Highest Rating" value="hight-ratting" />
+              <Picker.Item label="Price: High-Low" value="hight-price" />
+              <Picker.Item label="Price: Low-High" value="low-price" />
+              <Picker.Item label="None" value="none" />
             </Picker>
           </View>
           <TouchableOpacity

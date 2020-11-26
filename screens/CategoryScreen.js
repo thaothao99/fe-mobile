@@ -103,30 +103,33 @@ const CategoryScreen = props => {
         </TouchableOpacity>
       </View>
       {/* ===============BRAND============== */}
-      <ScrollView style={{ padding: 10 }}>
-        <Text style={styles.TitleType}>Brand</Text>
-        <View style={{
-          justifyContent: 'center',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          flex: 1,
-        }}>
-          {
-            !isLoading && brands.map(brand => {
-              return <View
-                key={brand._id}
-              >
-                <CategoryItemComponent
-                  key={brand.name}
-                  title={brand.name}
-                  img={brand.urlImg}
-                  handleOnpress={searchItems(brand.name)}
-                />
-              </View>
-            })
-          }
-        </View>
-        {/* <View style={styles.Item2}>
+      {
+        !isLoading && (
+          <ScrollView style={{ padding: 10 }}>
+            <Text style={styles.TitleType}>Brand</Text>
+            <View style={{
+              justifyContent: 'center',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              flex: 1,
+            }}>
+
+              {
+                !isLoading && brands.map(brand => {
+                  return <View
+                    key={brand._id}
+                  >
+                    <CategoryItemComponent
+                      key={brand.name}
+                      title={brand.name}
+                      img={brand.urlImg}
+                      handleOnpress={searchItems(brand.name)}
+                    />
+                  </View>
+                })
+              }
+            </View>
+            {/* <View style={styles.Item2}>
           <CategoryItemComponent
             title="Nike"
             img="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_1280.jpg"
@@ -150,30 +153,30 @@ const CategoryScreen = props => {
             handleOnpress={searchItems(`Biti's`)}
           />
         </View> */}
-        {/* =============TYPE=============== */}
-        <Text style={styles.TitleType}>Type</Text>
-        <View style={{
-          justifyContent: 'center',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          flex: 1,
-        }}>
-          {
-            !isLoading && types.map(type => {
-              return <View
-                key={type._id}
-              >
-                <CategoryItemComponent
-                  key={type.name}
-                  title={type.name}
-                  img={type.urlImg}
-                  handleOnpress={searchItems(type.name.toString(), 'categories', '')}
-                />
-              </View>
-            })
-          }
-        </View>
-        {/* <View style={styles.Item2}>
+            {/* =============TYPE=============== */}
+            <Text style={styles.TitleType}>Type</Text>
+            <View style={{
+              justifyContent: 'center',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              flex: 1,
+            }}>
+              {
+                !isLoading && types.map(type => {
+                  return <View
+                    key={type._id}
+                  >
+                    <CategoryItemComponent
+                      key={type.name}
+                      title={type.name}
+                      img={type.urlImg}
+                      handleOnpress={searchItems(type.name.toString(), 'categories', '')}
+                    />
+                  </View>
+                })
+              }
+            </View>
+            {/* <View style={styles.Item2}>
           <CategoryItemComponent
             title="LifeStyle"
             img="https://cdn.pixabay.com/photo/2016/10/21/14/48/light-painting-1758192_1280.jpg"
@@ -209,8 +212,10 @@ const CategoryScreen = props => {
             handleOnpress={searchItems('', 'categories', 'in')}
           />
         </View> */}
-        {/*==================================== */}
-      </ScrollView>
+            {/*==================================== */}
+          </ScrollView>
+        )
+      }
     </View >
   );
 };

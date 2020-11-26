@@ -56,7 +56,7 @@ const FilterScreen = props => {
     converse: { name: 'Converse', checked: false },
     vans: { name: 'Vans', checked: false },
     timberland: { name: 'Timberland', checked: false },
-    underArmor: { name: 'Under Armor', checked: false },
+    // underArmor: { name: 'Under Armor', checked: false },
   };
   const initInputData = {
     minPrice: '',
@@ -90,7 +90,7 @@ const FilterScreen = props => {
   };
 
   const handleOnCheck = brand => {
-    nextBrands = { ...brands };
+    const nextBrands = { ...brands };
     nextBrands[brand].checked = !nextBrands[brand].checked;
     setBrands(nextBrands);
   };

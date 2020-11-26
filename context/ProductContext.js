@@ -154,11 +154,11 @@ const filterProducts = dispatch => async (
 ) => {
   try {
     const { data } = await apiHelper.get(
-      `/api/v1/products?${searchQuery}${filterQuery}${sortQuery}`
+      `/product?${searchQuery}${filterQuery}${sortQuery}`
     );
     console.log(
       'update products!',
-      `/api/v1/products?${searchQuery}${filterQuery}${sortQuery}`
+      `/product?${searchQuery}${filterQuery}${sortQuery}`
     );
 
     dispatch({
@@ -178,9 +178,9 @@ const filterProducts = dispatch => async (
 const clearFilter = dispatch => async (searchQuery, sortQuery) => {
   try {
     const { data } = await apiHelper.get(
-      `/api/v1/products?${searchQuery}${sortQuery}`
+      `/product?${searchQuery}${sortQuery}`
     );
-    console.log(`clear filter! /api/v1/products?${searchQuery}${sortQuery} `);
+    console.log(`clear filter! /product?${searchQuery}${sortQuery} `);
 
     dispatch({
       type: 'CLEAR_FILTER',
@@ -203,16 +203,16 @@ const sortProducts = dispatch => async (
 ) => {
   try {
     const { data } = await apiHelper.get(
-      `/api/v1/products?${searchQuery}${filterQuery}${sortQuery}`
+      `/product?${searchQuery}${filterQuery}${sortQuery}`
     );
     console.log(
       'sort!',
-      `/api/v1/products?${searchQuery}${filterQuery}${sortQuery}`
+      `/product?${searchQuery}${filterQuery}${sortQuery}`
     );
 
     dispatch({
       type: 'SORT_LIST_PRODUCTS',
-      payload: { products: data.data.data, sortQuery: sortQuery },
+      payload: { products: data, sortQuery: sortQuery },
     });
   } catch (error) {
     const payload = error.response

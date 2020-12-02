@@ -34,7 +34,7 @@ const NewArriavalComponent = props => {
         <TouchableOpacity
           onPress={() =>
             navigate('CategoryResult', {
-              search: '',
+              search: '&sort=newest',
               title: 'New Arrival',
             })
           }

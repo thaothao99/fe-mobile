@@ -29,6 +29,7 @@ const ScreenForTest = props => {
     appLoading,
   } = useContext(UserContext);
   useEffect(() => {
+    // console.log(wishlist)
     if (!wishlist) {
       setLoading();
       getWishList();
@@ -116,7 +117,7 @@ const ScreenForTest = props => {
               containerStyle={{ flex: 1, marginTop: 30, marginBottom: 30 }}
               title="Continue shopping"
               handleOnPress={() => {
-                props.navigation.pop();
+                props.navigation.navigate('Home');
               }}
             />
           </View>

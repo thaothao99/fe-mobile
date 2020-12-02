@@ -35,7 +35,7 @@ const HighestRatedComponent = () => {
         <TouchableOpacity
           onPress={() =>
             navigate('CategoryResult', {
-              search: '&sort=-ratingsAverage',
+              search: '&sort=hight-ratting',
               title: 'Highest Rated',
             })
           }

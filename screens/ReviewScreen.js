@@ -25,16 +25,17 @@ const ReviewScreen = props => {
   useEffect(() => {
     // setLoading();
     getReview(product.id);
+    console.log(product)
   }, []);
 
   // console.log(reviews);
 
   const isNotReviewed = () => {
-    if (!reviews || !user) return true;
-    const review = reviews.find(
-      review => review.user._id.toString() === user._id.toString()
-    );
-    if (review) return false;
+    // if (!reviews || !user) return true;
+    // const review = reviews.find(
+    //   review => review.user.toString() === user._id.toString()
+    // );
+    // if (review) return false;
     return true;
   };
   if (loading) {

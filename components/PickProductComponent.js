@@ -14,13 +14,13 @@ const PickProductComponent = ({
   const [sizeList, setSizeList] = useState([]);
 
   useEffect(() => {
+    // console.log(variants)
     let color = selectedColor;
     let size = selectedSize;
     const colors = variants
       .map(item => item.color)
       .filter((item, index, inputArray) => inputArray.indexOf(item) === index);
     setColorsList(colors);
-
     if (!selectedColor) {
       setSelectedColor(colors[0]);
       color = colors[0];
@@ -45,6 +45,8 @@ const PickProductComponent = ({
   // console.log('size ne', selectedSize);
 
   const handleOnPress = (type, att) => () => {
+    console.log(variants)
+
     let selectedVarriant = {};
     // console.log(type, att);
     if (type === 'color') {
@@ -123,14 +125,14 @@ const PickProductComponent = ({
   );
 };
 
-PickProductComponent.defaultProps = {
-  variants: [
-    { color: 'red', size: 26, quantity: 10, id: 0 },
-    { color: 'yellow', size: 27, quantity: 7, id: 1 },
-    { color: 'yellow', size: 28, quantity: 5, id: 2 },
-    { color: 'blue', size: 26, quantity: 10, id: 6 },
-    { color: 'blue', size: 27, quantity: 7, id: 7 },
-    { color: 'blue', size: 28, quantity: 5, id: 8 },
-  ],
-};
+// PickProductComponent.defaultProps = {
+//   variants: [
+//     { color: 'red', size: 26, quantity: 10, id: 0 },
+//     { color: 'yellow', size: 27, quantity: 7, id: 1 },
+//     { color: 'yellow', size: 28, quantity: 5, id: 2 },
+//     { color: 'blue', size: 26, quantity: 10, id: 6 },
+//     { color: 'blue', size: 27, quantity: 7, id: 7 },
+//     { color: 'blue', size: 28, quantity: 5, id: 8 },
+//   ],
+// };
 export default PickProductComponent;

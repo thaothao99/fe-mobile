@@ -80,9 +80,9 @@ const ProductScreen = props => {
   };
 
   const productId = props.navigation.getParam('productId');
-
+  const [errDisplay, setErrDisplay] = useState('')
   useEffect(() => {
-    if (isLoading || !product) {
+    if (isLoading) {
       setAppLoading();
       const productId = props.navigation.getParam('productId');
       getProduct(productId);
@@ -91,19 +91,18 @@ const ProductScreen = props => {
     props.navigation.setParams({ navigateCheckLogin, cart });
 
     if (error) {
-      const errDisplay = error.startsWith('Duplicate')
-        ? `Product already exists in your ${actionName}`
-        : error;
-      ToastAndroid.showWithGravityAndOffset(
-        errDisplay,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        25,
-        150
-      );
-      clearError();
+      console.log(error)
+      // errDisplay = `Product already exists in your ${actionName}`
+      setErrDisplay(`Product already exists in your ${actionName}`)
+      // ToastAndroid.showWithGravityAndOffset(
+      //   errDisplay,
+      //   ToastAndroid.SHORT,
+      //   ToastAndroid.TOP,
+      //   25,
+      //   150
+      // );
     }
-  }, [cart, error]);
+  }, []);
 
   const handleOnAddToCart = () => {
     setIsLoading(false);
@@ -149,12 +148,12 @@ const ProductScreen = props => {
     return <View></View>;
   }
 
-  if (error && !error.startsWith('Duplicate')) {
-    const errResult =
-      error.startsWith('Invalid _id') ||
-      error.startsWith('No document found with that ID')
-        ? `Your product you find is not found`
-        : `Something is wrong`;
+  if (error) {
+    // const errResult =
+    //   error.startsWith('Invalid _id') ||
+    //     error.startsWith('No document found with that ID')
+    //     ? `Your product you find is not found`
+    //     : `Something is wrong`;
     return (
       <View style={styles.container}>
         <AnimationViewComponent
@@ -171,7 +170,7 @@ const ProductScreen = props => {
               marginVertical: 10,
             }}
           >
-            {`Opps! ${errResult}!`}
+            {`Opps! ${errDisplay}!`}
           </Text>
           {/* <Text style={{ textAlign: 'center' }}>
             Add somthing to make me happy:)
@@ -182,7 +181,9 @@ const ProductScreen = props => {
             activeOpacity={0.8}
             title="Shopping now"
             handleOnPress={() => {
-              props.navigation.pop();
+              props.navigation.navigate('Product', { productId: productId });
+              clearError();
+
             }}
             containerStyle={{ flex: 1 }}
           />
@@ -330,7 +331,7 @@ const ProductScreen = props => {
                     isClear = false;
                     props.navigation.navigate('Review', {
                       product: {
-                        id: product.id,
+                        id: productId,
                         rating: product.ratingsAverage,
                         nRating: product.ratingsQuantity,
                         name: product.name,
@@ -444,7 +445,7 @@ const ProductScreen = props => {
 ProductScreen.navigationOptions = ({ navigation }) => {
   const {
     isScroll,
-    navigateCheckLogin = () => {},
+    navigateCheckLogin = () => { },
     cart,
   } = navigation.state.params;
 

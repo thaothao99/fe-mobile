@@ -1,6 +1,6 @@
 import contextFactory from './contextFactory';
 import apiHelper from '../utils/apiHelper';
-import { navigateReplace } from '../utils/navigationRef';
+import { navigate, navigateReplace } from '../utils/navigationRef';
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -137,10 +137,10 @@ const setAppLoading = dispatch => async () => {
 
 const getCart = dispatch => async () => {
   try {
-    const { data } = await apiHelper.get(`/api/v1/users/cart`);
-    console.log('Get cart!', data.data.data.length);
-
-    dispatch({ type: 'GET_CART_ITEMS', payload: data.data.data });
+    const { data } = await apiHelper.get(`/cart/all`);
+    console.log('Get cart!', data);
+    console.log(data)
+    dispatch({ type: 'GET_CART_ITEMS', payload: data });
   } catch (error) {
     const payload = error.response
       ? error.response.data.message
@@ -152,14 +152,15 @@ const getCart = dispatch => async () => {
 
 const addCartItem = dispatch => async variantId => {
   try {
-    const { data } = await apiHelper.post(`/api/v1/users/cart`, {
+    const { data } = await apiHelper.post(`/cart/create`, {
       variant: variantId,
       quantity: 1,
     });
     console.log('Add to cart!');
-
-    dispatch({ type: 'ADD_CART_ITEM', payload: data.data.data });
+    navigate('Cart')
+    dispatch({ type: 'ADD_CART_ITEM', payload: data });
   } catch (error) {
+    // throw new Error(error.response.data.message)
     const payload = error.response
       ? error.response.data.message
       : error.message;
@@ -170,7 +171,7 @@ const addCartItem = dispatch => async variantId => {
 
 const removeCartItems = dispatch => async id => {
   try {
-    await apiHelper.delete(`/api/v1/users/cart/${id}`);
+    await apiHelper.delete(`/cart/${id}`);
 
     dispatch({ type: 'REMOVE_CART_ITEM', payload: id });
   } catch (error) {
@@ -186,7 +187,7 @@ const updateQuantityCartItem = dispatch => async (id, quantity) => {
   console.log(id, quantity);
 
   try {
-    await apiHelper.patch(`/api/v1/users/cart/${id}`, { quantity });
+    await apiHelper.post(`/cart/update/${id}`, { quantity: quantity });
 
     dispatch({
       type: 'UPDATE_CART_ITEM',
@@ -203,10 +204,10 @@ const updateQuantityCartItem = dispatch => async (id, quantity) => {
 
 const getWishList = dispatch => async () => {
   try {
-    const { data } = await apiHelper.get(`/api/v1/users/wishlist`);
-    console.log('Get wishlist!', data.data.data.length);
+    const { data } = await apiHelper.get(`/wish/acc`);
+    console.log('Get wishlist!', data.length);
 
-    dispatch({ type: 'GET_WISHLIST_ITEMS', payload: data.data.data });
+    dispatch({ type: 'GET_WISHLIST_ITEMS', payload: data });
   } catch (error) {
     const payload = error.response
       ? error.response.data.message
@@ -218,24 +219,25 @@ const getWishList = dispatch => async () => {
 
 const addWishlistItem = dispatch => async productId => {
   try {
-    const { data } = await apiHelper.post(`/api/v1/users/wishlist`, {
+    const { data } = await apiHelper.post(`/wish/create`, {
       product: productId,
     });
     console.log('Add wishlist!');
-
-    dispatch({ type: 'ADD_WISHLIST_ITEM', payload: data.data.data });
+    navigate('WishList')
+    dispatch({ type: 'ADD_WISHLIST_ITEM', payload: data });
   } catch (error) {
     const payload = error.response
       ? error.response.data.message
       : error.message;
-    console.log(error, payload);
+    // console.log(error, payload);
     dispatch({ type: 'SET_USER_ERROR', payload });
   }
 };
 
 const removeWishlistItem = dispatch => async id => {
   try {
-    await apiHelper.delete(`/api/v1/users/wishlist/${id}`);
+    console.log(id)
+    await apiHelper.delete(`/wish/${id}`);
 
     dispatch({ type: 'REMOVE_WISHLIST_ITEMS', payload: id });
   } catch (error) {

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Rating } from 'react-native-ratings';
 
 const ReviewComponent = ({ item }) => {
-  const date = new Date(item.createdAt).toDateString();
+  // const date = new Date(item.createdAt).toDateString();
+  useEffect(() => {
+    console.log(item)
+  }, [])
   return (
     <View
       style={{
@@ -40,7 +43,7 @@ const ReviewComponent = ({ item }) => {
           <Text style={{ flex: 1, fontSize: 17, fontWeight: 'bold' }}>
             {item.user.name}
           </Text>
-          <Text style={{ fontSize: 13 }}>{date}</Text>
+          <Text style={{ fontSize: 13 }}>{item.createAt.toString().split('T')[0]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Rating
@@ -49,9 +52,9 @@ const ReviewComponent = ({ item }) => {
             imageSize={15}
             style={{ paddingVertical: 10 }}
           />
-          <Text style={{ marginLeft: 5, fontSize: 15, color: '#27ae60' }}>
+          {/* <Text style={{ marginLeft: 5, fontSize: 15, color: '#27ae60' }}>
             {item.bought ? 'Purchased' : 'Not purchased yet'}
-          </Text>
+          </Text> */}
         </View>
         <Text style={{ fontSize: 15, marginBottom: 5 }}>{item.review}</Text>
       </View>

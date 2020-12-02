@@ -25,6 +25,7 @@ const WriteReviewScreen = props => {
 
   const ratingCompleted = rated => {
     console.log('Rating is: ' + rated);
+    console.log(product)
     setRating(rated);
   };
 
@@ -126,12 +127,12 @@ const WriteReviewScreen = props => {
             </Text>
           </View>
         ) : (
-          <View style={{ alignItems: 'flex-end', marginBottom: 10 }}>
-            <Text style={{ fontSize: 13, color: 'red' }}>
-              Character limit: 2000
+            <View style={{ alignItems: 'flex-end', marginBottom: 10 }}>
+              <Text style={{ fontSize: 13, color: 'red' }}>
+                Character limit: 2000
             </Text>
-          </View>
-        )}
+            </View>
+          )}
 
         {error !== '' && (
           <Text style={{ color: '#e74c3c', textAlign: 'center' }}>{error}</Text>

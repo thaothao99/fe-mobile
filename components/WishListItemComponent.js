@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -21,6 +21,7 @@ const WishListItemComponent = ({
   ...props
 }) => {
   const { removeWishlistItem, setLoading } = useContext(UserContext);
+  useEffect(() => console.log(item), [])
   const handleOnSubmit = id => {
     setLoading();
     removeWishlistItem(id);

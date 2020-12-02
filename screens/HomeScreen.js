@@ -22,7 +22,7 @@ import HighestRatedComponent from '../components/HighestRatedComponent';
 
 const images = [
   'https://trungsneaker.com/wp-content/uploads/2020/01/d2234c21fc3849e5a79efb6219e48b77.jpg',
-  'https://under.vn/wp-content/uploads/2020/03/nike-air-force-one-f1-0.jpg',
+  'https://bizweb.dktcdn.net/100/377/398/products/043dc537-9992-46a6-843c-94b91cd51d10.jpg?v=1596957846850',
   'https://cdn.shopify.com/s/files/1/0247/0245/1796/products/air-jordan-design-footwear-1598505_1200x1200.jpg?v=1556428513',
   'http://netblogtips.com/wp-content/uploads/2019/07/photo-1552346154-21d32810aba3.jpg',
 ];

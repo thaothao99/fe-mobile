@@ -84,7 +84,7 @@ const SearchResultScreen = props => {
               <Picker.Item label="None" value="none" />
             </Picker>
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               props.navigation.navigate('Filter');
             }}
@@ -95,7 +95,7 @@ const SearchResultScreen = props => {
               <Text style={{ fontSize: 17, paddingRight: 10 }}>Filter</Text>
               <Ionicons name={'md-color-filter'} size={22} color="#3d3d3d" />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         {/* ============= List ============ */}
         <View>

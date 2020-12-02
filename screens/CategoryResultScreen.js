@@ -38,6 +38,8 @@ const CategoryResultScreen = props => {
       const search = props.navigation.getParam('search');
       const field = props.navigation.getParam('field');
       const type = props.navigation.getParam('type');
+      console.log(search)
+
       setLoading();
       searchProducts(search, 'CategoryResult', field, type);
       console.log(products);

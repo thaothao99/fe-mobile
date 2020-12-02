@@ -1,6 +1,6 @@
 import contextFactory from './contextFactory';
 import apiHelper from '../utils/apiHelper';
-import { navigate } from '../utils/navigationRef';
+import { navigate, navigateReplace } from '../utils/navigationRef';
 
 const reviewReducer = (state, action) => {
   switch (action.type) {
@@ -76,12 +76,12 @@ const getReview = dispatch => async productId => {
     // console.log(`/api/v1/products/${productId}/reviews`);
 
     const { data } = await apiHelper.get(
-      `/api/v1/products/${productId}/reviews`
+      `/review/${productId}`
     );
 
     dispatch({
       type: 'GET_REVIEWS',
-      payload: data.data.data,
+      payload: data,
     });
   } catch (error) {
     const payload = error.response
@@ -94,19 +94,26 @@ const getReview = dispatch => async productId => {
 
 const createReview = dispatch => async (productId, { rating, review }) => {
   try {
-    console.log(`/api/v1/products/${productId}/reviews`);
+    console.log('/review/create');
     if (!rating || !review) {
       throw new Error('Please rate and comment!');
     }
+    console.log(productId)
+    const sendData = {
+      review,
+      rating,
+      product: productId
+    }
     const { data } = await apiHelper.post(
-      `/api/v1/products/${productId}/reviews`,
-      { review, rating }
+      `review/create`,
+      sendData
     );
-    console.log('Created a review!');
+    console.log('Created a review!', data);
     dispatch({
       type: 'CREATE_REVIEW',
-      payload: data.data.data,
+      payload: data,
     });
+    navigate('Product', { productId: productId })
   } catch (error) {
     const payload = error.response
       ? error.response.data.message

@@ -30,7 +30,7 @@ const ListOrderComponent = ({
 
   ...props
 }) => {
-  const date = new Date(item.createdAt).toUTCString();
+  // const date = new Date(item.createdAt).toUTCString();
   const isPaid = item.paid ? 'Purchased' : 'Not purchased';
   return (
     <View style={styles.container}>
@@ -48,7 +48,7 @@ const ListOrderComponent = ({
           <Text style={{ fontSize: 17, fontWeight: 'bold' }}>
             {'Order: ' + `#${index + 1}`}
           </Text>
-          <Text style={{}}>{`Date: ${date}`}</Text>
+          <Text style={{}}>{`Date: ${item.createAt.toString().split('T')[0]}`}</Text>
           <Text style={{ fontWeight: 'bold' }}>{`Status: ${isPaid}`}</Text>
         </View>
       </TouchableOpacity>

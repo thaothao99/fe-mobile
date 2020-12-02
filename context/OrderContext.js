@@ -67,11 +67,11 @@ const getOrders = dispatch => async () => {
   try {
     console.log(`/api/v1/users/order`);
 
-    const { data } = await apiHelper.get(`/api/v1/users/order`);
+    const { data } = await apiHelper.get(`/order/all`);
 
     dispatch({
       type: 'GET_ORDERS',
-      payload: data.data.data,
+      payload: data,
     });
   } catch (error) {
     const payload = error.response
@@ -84,13 +84,13 @@ const getOrders = dispatch => async () => {
 
 const getOrder = dispatch => async orderId => {
   try {
-    console.log(`/api/v1/orders/${orderId}`);
+    console.log(`/order/${orderId}`);
 
-    const { data } = await apiHelper.get(`/api/v1/orders/${orderId}`);
+    const { data } = await apiHelper.get(`/order/${orderId}`);
 
     dispatch({
       type: 'GET_ORDER',
-      payload: data.data.data,
+      payload: data,
     });
   } catch (error) {
     const payload = error.response
@@ -120,7 +120,7 @@ const createOrder = dispatch => async ({
     //   price,
     // });
 
-    const { data } = await apiHelper.post('/api/v1/users/order', {
+    const { data } = await apiHelper.post('/order/create', {
       name,
       phone,
       address,
@@ -129,7 +129,7 @@ const createOrder = dispatch => async ({
     });
     dispatch({
       type: 'CREATE_ORDER',
-      payload: data.data.data,
+      payload: data,
     });
     navigateReplace('NoficationOrder');
   } catch (error) {

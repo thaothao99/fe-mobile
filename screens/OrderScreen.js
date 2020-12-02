@@ -21,14 +21,7 @@ import LoadingComponent from '../components/LoadingComponent';
 import AnimationViewComponent from '../components/AnimationViewComponent';
 import sourceAnimation from '../assets/emptybox.json';
 
-const data3 = [
-  {
-    id: '000001',
-    date: '27/10/2019',
-    status: 'Delivered',
-    status: 'Delivered',
-  },
-];
+
 
 const OrderScreen = props => {
   const { getOrders, setLoading, setAppLoading, orders, loading } = useContext(

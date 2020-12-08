@@ -11,6 +11,7 @@ import { Provider as OrderProvider } from './context/OrderContext';
 const prefix = Expo.Linking.makeUrl('/');
 export default function App() {
   console.log(prefix);
+  console.disableYellowBox = true
   return (
     <AuthProvider>
       <UserProvider>

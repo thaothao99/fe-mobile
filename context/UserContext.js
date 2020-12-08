@@ -103,7 +103,7 @@ const updateMe = dispatch => async ({ name, phone, address }) => {
       address,
     });
     console.log(data);
-    navigateReplace('Profile')
+    navigate('Profile')
 
     dispatch({ type: 'UPDATE_ME', payload: data.account });
   } catch (error) {

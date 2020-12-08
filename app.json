@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Q's Sneaker",
+    "name": "Sneaker Shop",
     "slug": "App",
     "privacy": "public",
     "platforms": [
@@ -26,8 +26,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "package": "com.yenmaiteam.qssneaker"
-    }
+    "description": "",
+    "githubUrl": "https://github.com/thaothao99/fe-mobile"
   }
 }

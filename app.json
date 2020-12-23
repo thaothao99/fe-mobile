@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Q's Sneaker",
+    "name": "Sneaker Shop",
     "slug": "App",
     "privacy": "public",
     "platforms": [
@@ -28,6 +28,7 @@
     },
     "android": {
       "package": "com.yenmaiteam.qssneaker"
-    }
+    },
+    "description": ""
   }
 }

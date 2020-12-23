@@ -68,6 +68,7 @@ const WishListItemComponent = ({
             activeOpacity={0.8}
             containerStyle={{
               flex: 1,
+              height: 60,
               width: 130,
               backgroundColor: '#FFF',
               shadowColor: 'red',
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   touchContainer: {
     flex: 1,
-    height: 110,
+    height: 115,
     flexDirection: 'row',
   },
   info: {

@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
     // backgroundColor: '#1d1d1d',
     // justifyContent: 'center',
     flex: 1,
-    // paddingVertical: 10,
+    paddingVertical: 20,
     paddingLeft: 15,
     paddingRight: 15,
   },
   SearchContainer: {
     height: 45,
     // backgroundColor: '#FFF',
-    marginVertical: 30,
+    marginVertical: 10,
     flex: 1,
     borderColor: 'rgba(127, 140, 141, 0.43)',
     borderBottomWidth: 1,
@@ -73,9 +73,9 @@ const SearchScreen = props => {
           <View style={styles.SearchContainer}>
             <Ionicons
               name={'ios-search'}
-              size={25}
+              size={20}
               color="#3d3d3d"
-              style={{ margin: 20 }}
+              style={{ margin: 10 }}
             />
             <TextInput
               value={value}

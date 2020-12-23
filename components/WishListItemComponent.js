@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   touchContainer: {
     flex: 1,
-    height: 110,
+    height: 115,
     flexDirection: 'row',
   },
   info: {

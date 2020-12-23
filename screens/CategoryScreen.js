@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   SearchContainer: {
-    height: 80,
+    height: 100,
     backgroundColor: '#1d1d1d',
     justifyContent: 'center',
-    paddingTop: 23,
+    paddingTop: 30,
     paddingLeft: 5,
     paddingRight: 5,
   },
@@ -94,7 +94,7 @@ const CategoryScreen = props => {
           >
             <Ionicons
               name={'ios-search'}
-              size={30}
+              size={20}
               color="#3d3d3d"
               style={{ padding: 10 }}
             />

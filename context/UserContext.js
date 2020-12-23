@@ -157,7 +157,7 @@ const addCartItem = dispatch => async variantId => {
       quantity: 1,
     });
     console.log('Add to cart!');
-    navigate('Cart')
+    navigateReplace('Cart')
     dispatch({ type: 'ADD_CART_ITEM', payload: data });
   } catch (error) {
     // throw new Error(error.response.data.message)
@@ -223,7 +223,7 @@ const addWishlistItem = dispatch => async productId => {
       product: productId,
     });
     console.log('Add wishlist!');
-    navigate('WishList')
+    navigateReplace('WishList')
     dispatch({ type: 'ADD_WISHLIST_ITEM', payload: data });
   } catch (error) {
     const payload = error.response

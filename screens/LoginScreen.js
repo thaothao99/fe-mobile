@@ -190,14 +190,14 @@ const LoginScreen = props => {
             </Button>
         </View>
         <View style={styles.linkContainer}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.link}
             onPress={() => {
               props.navigation.navigate('Forgot');
             }}
           >
             <Text>Forgot password?</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <TouchableOpacity
             style={styles.link}

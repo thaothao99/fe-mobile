@@ -48,7 +48,7 @@ const authReducer = (state, action) => {
 const singInGG = dispatch => {
   return async () => {
     try {
-      const API_URL = 'http://localhost:4000'
+      const API_URL = 'http://sonnguy3n.info:4000'
       const endpointGG = 'auth/google'
       // const token = await Linking.openURL(`${API_URL}/${endpointGG}`)
 
@@ -56,17 +56,23 @@ const singInGG = dispatch => {
 
       WebBrowser.openAuthSessionAsync(`${API_URL}/${endpointGG}`, redirectUrl).then(async (res) => {
         const { url } = res
-        const tokenRes = url && url.split('=')[1]
+        let tokenRes
+        tokenRes = url && url.split('=')[1]
+        if (tokenRes && tokenRes.slice(-1) === '#') {
+          tokenRes = tokenRes.slice(0, -1)
+        }
         if (tokenRes && tokenRes === 'false') {
           dispatch({ type: 'SET_AUTH_ERROR', payload: 'Email not found! Please signup!' });
         }
         else {
-          console.log(tokenRes)
           await AsyncStorage.setItem('token', tokenRes);
           dispatch({ type: 'LOGIN_SUCCESS', payload: '' });
           // navigate("Main");
           navigateReplace('Main');
+
         }
+        // console.log(url, tokenRes)
+
       })
 
     } catch (error) {

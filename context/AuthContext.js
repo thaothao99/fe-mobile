@@ -90,7 +90,6 @@ const signIn = dispatch => {
       if (!username || !password) {
         throw new Error('Please enter username and password!');
       }
-
       const { data } = await apiHelper.post('/account/login', {
         username,
         password,

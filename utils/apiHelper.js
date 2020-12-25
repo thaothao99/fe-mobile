@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
+const API_URL = 'http://sonnguy3n.info:4000'
 
 const instance = axios.create({
-  baseURL: 'http://sonnguy3n.info:4000',
+  baseURL: API_URL,
 });
 
 instance.interceptors.request.use(

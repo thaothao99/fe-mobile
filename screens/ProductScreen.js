@@ -102,9 +102,9 @@ const ProductScreen = props => {
       //   150
       // );
     }
-  }, []);
+  }, [error]);
 
-  const handleOnAddToCart = () => {
+  const handleOnAddToCart = async () => {
     setIsLoading(false);
     actionName = 'Cart';
     if (!isSignIn) {
@@ -112,18 +112,18 @@ const ProductScreen = props => {
       return;
     }
     setUserLoading();
-    addCartItem(selectedProduct._id);
+    await addCartItem(selectedProduct._id);
     console.log(error);
   };
 
-  const handleAddToWishlist = () => {
+  const handleAddToWishlist = async () => {
     actionName = 'Wishlist';
     if (!isSignIn) {
       props.navigation.navigate('Login');
       return;
     }
     setUserLoading();
-    addWishlistItem(productId);
+    await addWishlistItem(productId);
   };
 
   const handleScroll = event => {

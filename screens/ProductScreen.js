@@ -91,7 +91,7 @@ const ProductScreen = props => {
     props.navigation.setParams({ navigateCheckLogin, cart });
 
     if (error) {
-      console.log(error)
+      // console.log(error)
       // errDisplay = `Product already exists in your ${actionName}`
       setErrDisplay(`Product already exists in your ${actionName}`)
       // ToastAndroid.showWithGravityAndOffset(
